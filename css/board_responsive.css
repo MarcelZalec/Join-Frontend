@@ -1,0 +1,247 @@
+@media (max-width: 1000px) {
+  main {
+    box-sizing: unset;
+    font-size: 16px;
+    padding: 120px 0px 100px 0px !important;
+    height: 100%;
+  }
+
+  h1 {
+    font-size: 47px !important;
+  }
+
+  .task-category-and-dropdown button {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  body .mobileDropdown {
+    position: absolute;
+    right: 10px;
+    top: 50px;
+
+    box-sizing: border-box;
+
+    background-color: rgb(42, 54, 71, 1);
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+
+    display: flex;
+    flex-direction: column;
+
+    border-radius: 20px 0px 20px 20px;
+
+    transition: 0.2s ease-in-out;
+    padding: 10px;
+  }
+
+  .mobileDropdown a {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(205, 205, 205, 1);
+  }
+
+  .mobileDropdown a:hover {
+    background-color: #2a3d59;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .mobileDropdown-translate-100 {
+    transform: translateX(150%);
+  }
+
+  .task-contacts-container {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  #all-sections-container {
+    margin: 0 auto;
+    flex-direction: column;
+    width: 90%;
+    gap: unset;
+  }
+
+  .add-task-pop-up {
+    width: 80%;
+    min-width: 550px;
+  }
+
+  .wrap-container {
+    overflow-x: scroll;
+  }
+
+  .wrap-container::-webkit-scrollbar {
+    width: 100px;
+  }
+
+  .wrap-container {
+    overflow-x: scroll;
+  }
+
+  .wrap-container::-webkit-scrollbar {
+    height: 10px;
+  }
+
+  .wrap-container::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+  }
+
+  .wrap-container::-webkit-scrollbar-corner {
+    background: #838181;
+  }
+
+  .wrap-container::-webkit-scrollbar-button:hover {
+    background: #aaa;
+  }
+
+  .section-headline {
+    gap: 16px;
+  }
+
+  #to-do-container,
+  #await-feedback-container,
+  #in-progress-container,
+  #done-container {
+    border-radius: 8px;
+    display: flex;
+    flex-direction: unset !important;
+    gap: 16px;
+
+    padding: 10px;
+  }
+
+  .task {
+    min-width: 252px;
+    max-width: 252px;
+    height: 263px;
+    margin-right: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    overflow: hidden;
+  }
+
+  #wrap {
+    overflow: unset;
+  }
+
+  body {
+    overflow: unset;
+  }
+
+  #main-headline {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .headline-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 82%;
+  }
+
+  #add-task-button-mobile {
+    display: flex;
+    padding: 5px 10px;
+    max-height: 40px;
+    min-height: 40px;
+  }
+
+  #add-task-button {
+    display: none;
+  }
+
+  #search-container {
+    width: 100%;
+  }
+
+  #search-input-container {
+    width: 80%;
+  }
+
+  .plus-icon-container {
+    width: 30px;
+    height: 30px;
+  }
+
+  .section-headline h2 {
+    font-size: 27px;
+  }
+
+  .task-category-and-dropdown {
+    align-items: center;
+  }
+
+  body .dropdownSVG {
+    box-sizing: unset;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 32px;
+    width: 32px;
+
+    background-color: rgba(205, 205, 205, 1);
+    border-radius: 8px;
+
+    transition: 0.2s;
+  }
+
+  .dropdownSVG:hover {
+    background-color: rgb(155, 155, 155);
+  }
+
+  .dropdownSVG svg {
+    transition: 0.2s;
+    transform: rotate(-180deg);
+  }
+
+  .task:has(.mobileDropdown-translate-100) .dropdownSVG svg {
+    transform: rotate(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .task {
+    width: 252px;
+  }
+
+  .task-category-and-dropdown {
+    gap: 10%;
+  }
+
+  body .big-task-pop-up {
+    width: 100%;
+    height: 100vh;
+    max-height: unset;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #big-edit-task-priority-container {
+    flex-direction: column;
+  }
+
+  #big-task-pop-up-description,
+  .big-task-pop-up-info-container,
+  .big-task-pop-up-label-text,
+  .big-task-pop-up-value-text,
+  .big-task-pop-up-profile-name,
+  #big-task-pop-up-contact-all,
+  #big-task-pop-up-edit-button,
+  #big-task-pop-up-delete-button,
+  #big-task-pop-up-subtask-all {
+    font-size: 16px;
+  }
+
+  .animation-bg {
+    width: unset;
+  }
+}

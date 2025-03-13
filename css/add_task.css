@@ -1,0 +1,473 @@
+body {
+  background-color: rgba(246, 247, 248, 1);
+
+  min-height: 100vh;
+
+  p {
+    margin: 0px 0px 5px 0px;
+    font-size: 20px;
+  }
+}
+
+.main {
+  box-sizing: border-box;
+  height: calc(100vh - 96px);
+  width: 100%;
+  padding: 50px 50px 50px 282px;
+
+  display: flex;
+  justify-content: center;
+
+  b {
+    color: red;
+  }
+}
+
+.max-w {
+  width: 100%;
+  height: 100%;
+  max-width: 1300px;
+}
+
+::placeholder {
+  color: rgba(209, 209, 209, 1);
+}
+
+
+#inputDescription {
+  width: 100%;
+
+  height: 120px;
+  max-height: 200px;
+  min-height: 50px;
+
+  border-radius: 10px;
+  padding: 12px;
+  outline: none;
+  cursor: pointer;
+  box-sizing: border-box;
+
+  border: 1px solid #d1d1d1;
+
+  resize: vertical;
+}
+
+form div div div {
+  /* background-color: rgba(255, 255, 255, 1); */
+  height: 48px;
+  border: 1px solid;
+  border-color: rgba(209, 209, 209, 1);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+
+  input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    padding: 0px 15px 0px 15px;
+    border-radius: 10px;
+    outline: none;
+    cursor: pointer;
+  }
+
+  :focus {
+    border: 1px solid;
+    border-color: rgba(41, 171, 226, 1);
+  }
+}
+
+.select {
+  cursor: pointer;
+  justify-content: space-between;
+}
+
+.select span {
+  padding: 0px 10px 0px 10px;
+  font-size: 20px;
+}
+
+.select:focus {
+  border: 1px solid rgba(41, 171, 226, 1);
+}
+
+.arrow {
+  display: flex;
+  padding: 10px;
+  margin-right: 10px;
+
+  width: unset;
+  border-radius: 100%;
+
+  transition: 0.2s;
+}
+
+.arrow:hover {
+  background-color: #d9d9d9;
+  /* padding: 10px !important;
+  margin-right: 10px; */
+}
+
+.rotate {
+  transform: rotate(180deg);
+  /* padding: 0px 0px 0px 20px !important; */
+}
+
+#calender {
+  margin-right: 25px;
+}
+
+#calender:hover {
+  cursor: pointer;
+  padding: 5px;
+  margin-right: 20px;
+}
+
+h1 {
+  font-family: "Inter";
+  font-size: 61px;
+  font-weight: 700;
+
+  margin: 0;
+}
+
+.addTaskBody form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  padding-top: 30px;
+
+  gap: 30px;
+}
+
+.input1 {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+.input1 {
+  div {
+    width: 100%;
+  }
+}
+
+.borderLine {
+  border: 1px solid #d1d1d1;
+  border-radius: 10px;
+}
+
+.input2 {
+  width: 100%;
+
+  gap: 20px;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.input2 {
+  div {
+    width: 100%;
+  }
+
+  .prio div {
+    display: flex;
+    gap: 8px;
+    height: 56px;
+    border: unset;
+    background-color: rgba(246, 247, 248, 1);
+  }
+
+  .prio div div {
+    box-sizing: border-box;
+    padding: 16px 10px;
+
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+    margin: 0px;
+    font-size: 20px;
+  }
+
+  .prio div div:hover {
+    cursor: pointer;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+  }
+}
+
+#inputTitle,
+#date,
+#subtask,
+#inputDescription {
+  font-size: 20px;
+  font-weight: 400;
+
+  font-family: "Inter", sans-serif;
+}
+
+#inputTitle:focus,
+#date:focus,
+#subtask:focus,
+#inputDescription:focus {
+  border: 1px solid #29abe2;
+}
+
+#inputTitle::placeholder,
+#date::placeholder,
+#subtask::placeholder,
+#inputDescription::placeholder {
+  font-size: 20px;
+  font-weight: 400;
+  color: #d1d1d1;
+}
+
+.center {
+  align-items: center;
+  justify-content: center;
+
+  transition: 0.2s;
+}
+
+.center path {
+  transition: 0.2s;
+}
+
+.backgroundUrgent {
+  background-color: rgba(255, 61, 0, 1) !important;
+  color: rgba(255, 255, 255, 1);
+}
+
+.backgroundUrgent path {
+  fill: white;
+}
+
+.backgroundMedium {
+  background-color: rgba(255, 168, 0, 1) !important;
+  color: rgba(255, 255, 255, 1);
+}
+
+.backgroundMedium path {
+  fill: white;
+}
+
+.backgroundLow {
+  background-color: rgba(122, 226, 41, 1) !important;
+  color: rgba(255, 255, 255, 1);
+}
+
+.backgroundLow path {
+  fill: white;
+}
+
+#section99 {
+  position: relative;
+  height: 90%;
+}
+
+.submitSection {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  background-color: rgba(246, 247, 248, 1);
+}
+
+.submitSection p {
+  margin: 0;
+
+  display: flex;
+  align-items: end;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  width: 309px;
+  height: 56px;
+  gap: 15px;
+}
+
+.darkBTN {
+  border-radius: 10px;
+  background: #2a3647;
+
+  padding: 16px;
+  color: rgba(255, 255, 255, 1);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  border: none;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+
+  span {
+    font-size: 21px;
+    font-weight: 700;
+    width: max-content;
+  }
+}
+
+.darkBTN:hover {
+  background: #29abe2;
+  box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.darkBTN:active {
+  background: #091931;
+  box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.btn {
+  background: rgba(246, 247, 248, 1);
+  border: 2px solid #2a3647;
+
+  border-radius: 10px;
+  padding: 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  font-size: 20px;
+  font-weight: 400;
+
+  transition: 0.2s;
+
+  cursor: pointer;
+}
+
+.btn path {
+  transition: 0.2s;
+}
+
+.btn:hover {
+  border: 2px solid #29abe2;
+  color: #29abe2;
+  box-shadow: 0px 4px 4px 0px #00000040;
+
+  path {
+    stroke: #29abe2;
+  }
+}
+
+.drop-bg {
+  position: relative;
+  height: auto;
+  z-index: 9999;
+  flex-direction: column;
+}
+
+.drop-bg div {
+  margin: 0px;
+  border: none;
+  justify-content: space-between;
+}
+
+.drop-bg div span {
+  padding-left: 10px;
+}
+
+.drop-bg div:hover {
+  cursor: pointer;
+  background-color: lightgrey;
+}
+
+#categoryDropDown {
+  margin: 0px;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+#category {
+  margin-bottom: 0px;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.onFocus {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.onFocus input {
+  border: unset !important;
+}
+
+.onFocus:focus {
+  border: rgba(41, 171, 226, 1);
+}
+
+.transparent {
+  color: transparent !important;
+}
+
+.required-text {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.4px;
+  color: rgba(255, 129, 144, 1);
+}
+
+.checkboxesSVG {
+  justify-content: end !important;
+  padding-right: 20px;
+  width: 40px !important;
+}
+
+/* Styling für Webkit-basierte Browser (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 8px;
+  /* Breite der Scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0);
+  /* Hintergrund des Scrollbar-Tracks */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(128, 128, 128, 0.4);
+  /* Dezente graue Farbe mit Transparenz */
+  border-radius: 100px;
+  /* Abgerundete Ecken des Scrollbar-Thumbs */
+  border: 2px solid rgba(255, 255, 255, 0);
+  /* Optional: Rand für besseren Kontrast */
+}
+
+:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(128, 128, 128, 0.7);
+  /* Dezente graue Farbe mit Transparenz */
+  border-radius: 100px;
+  /* Abgerundete Ecken des Scrollbar-Thumbs */
+  border: 2px solid rgba(255, 255, 255, 0);
+  /* Optional: Rand für besseren Kontrast */
+}
+
+#board-add_task-load-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background-color: rgba(0, 0, 0, 0.5);
+
+  z-index: 9999;
+}
