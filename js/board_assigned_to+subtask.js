@@ -25,11 +25,11 @@ function renderCorrectAssignedNamesIntoBigTask(taskJson) {
  */
 
 function renderSubtask(taskJson) {
-  let correctTaskId = taskJson.tasksIdentity;
+  let correctTaskId = taskJson.id;
   let container = document.getElementById("big-task-pop-up-subtasks-container");
 
-  if (taskJson.subtask && taskJson.subtask.length > 0) {
-    renderSubtasks(taskJson.subtask, correctTaskId, container);
+  if (taskJson.subtasks && taskJson.subtasks.length > 0) {
+    renderSubtasks(taskJson.subtasks, correctTaskId, container);
   } else {
     renderNoSubtasksMessage(container);
   }
@@ -76,7 +76,8 @@ function renderNoSubtasksMessage(container) {
  */
 
 async function addCheckedStatus(i, correctTaskId) {
-  let subtask = tasks[correctTaskId]["subtask"];
+  task = getIndexOfTask(correctTaskId)
+  let subtask = task["subtasks"];
   let checkBoxChecked = toggleCheckboxIcons(i);
   updateCheckboxStatus(i, checkBoxChecked);
   depositSubtaskChanges(correctTaskId, subtask);
@@ -131,7 +132,10 @@ async function depositSubtaskChanges(correctTaskId, subtasks) {
     }
   }
   subtaskArray = subtasks;
-  await saveChangedSubtaskToFirebase(correctTaskId);
+  // await saveChangedSubtaskToFirebase(correctTaskId);
+  task = getIndexOfTask(correctTaskId)
+  task.subtasks = subtasks
+  await saveTaskToFirebase(task, correctTaskId)
 }
 
 /**
@@ -142,8 +146,9 @@ async function depositSubtaskChanges(correctTaskId, subtasks) {
  */
 
 async function saveChangedSubtaskToFirebase(correctTaskId) {
+  let BASE_URL = `http://127.0.0.1:8000/tasks/${correctTaskId}`;
   let taskPath = `/testRealTasks/${correctTaskId}/subtask`;
-  let response = await fetch(`${BASE_URL}${taskPath}.json`, {
+  let response = await fetch(`${BASE_URL}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -449,4 +454,18 @@ function insertSubtasksIntoContainer() {
   } else if (!subtaskArray && !task["subtasks"]) {
     document.getElementById("big-edit-task-subtask-container").innerHTML += "";
   }
+}
+
+function setSubtaskJson(task) {
+  let sub = []
+  task.subtasks.forEach((subtask) => {
+    const subObj = {
+      "id": subtask.id,
+      "is-tasked-checked": subtask.is_tasked_checked,
+      "task": subtask.task,
+      "task-description": subtask.task_description
+    }
+    sub.push(subObj)
+  })
+  task.subtasks = sub;
 }

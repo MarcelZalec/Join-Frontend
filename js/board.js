@@ -44,6 +44,9 @@ async function loadRelevantData(path = "") {
     if (task.assigned.length > 0) {
       getContacts(task)
     }
+    if (task.subtasks.length > 0) {
+      setSubtaskJson(task)
+    }
   });
   return responseAsJson;
 }
@@ -301,7 +304,10 @@ function showTaskContactPlusHTML(lengthOfAssignedTo) {
  */
 
 async function saveTaskToFirebase(task, id) {
-  setContacts(task);
+  console.log(task)
+  if (task.assigned.length > 0) {
+    setContacts(task);
+  }
   fixCategory(task)
   const response = await fetch(`http://127.0.0.1:8000/tasks/${id}/`, {
     method: "PUT",
