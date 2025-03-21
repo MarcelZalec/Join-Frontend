@@ -92,7 +92,6 @@ function removeBackground(id) {
 async function createTask(side) {
   // await ensureAllTasksExists();
   await saveTask();
-  await upload("", )
   if (side == "addTask") {
     startAnimation();
   }

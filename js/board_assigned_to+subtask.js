@@ -301,10 +301,10 @@ function renderBigEditTaskAssignedToPopUp(taskJson) {
 
 function renderOnlySubtaskContainerPopUp(taskJson) {
   document.getElementById("big-edit-task-subtask-container").innerHTML = "";
-  subtaskArray = taskJson.subtask;
-  if (taskJson.subtask) {
-    for (let i = 0; i < taskJson.subtask.length; i++) {
-      let subtask = taskJson.subtask[i];
+  subtaskArray = taskJson.subtasks;
+  if (taskJson.subtasks) {
+    for (let i = 0; i < taskJson.subtasks.length; i++) {
+      let subtask = taskJson.subtasks[i];
       document.getElementById("big-edit-task-subtask-container").innerHTML += renderSubtaskInPopUpContainer(i, subtask);
     }
   }

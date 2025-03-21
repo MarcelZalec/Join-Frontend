@@ -307,7 +307,6 @@ function resetSubtasks() {
 
 async function saveSubtaskChanges(id) {
   let task = tasks[id];
-  console.log("saveSubChanges", id)
   let taskForEditing = createTaskForEditing(task);
   try {
     await processTaskEditing(id, taskForEditing);
@@ -419,7 +418,7 @@ function saveChangesSingleTaskWithSubtask(taskId, objectForEditing, container, c
     description: objectForEditing["newDescription"],
     priority: objectForEditing["newPriority"],
     title: objectForEditing["newTitle"],
-    subtask: objectForEditing["newSubtaskArray"],
+    subtasks: objectForEditing["newSubtaskArray"],
   };
   let newTask = tasks[taskId];
   assignedToContactsBigContainer = [];
@@ -480,7 +479,7 @@ async function updateTask(taskId, objectForEditing) {
   let category = task.category;
   let type = task.type;
   task =
-    task.subtask || subtaskArray != null
+    task.subtasks || subtaskArray != null
       ? saveChangesWithSubtask(taskId, objectForEditing, category, type)
       : saveChangesWithoutSubtask(taskId, objectForEditing, category, type);
   await saveTaskWithCatch(task, taskId);

@@ -169,7 +169,7 @@ function returnTaskHtmlWithSubtask(element, contactsHTML, oppositeCategory, righ
           <div class="task-bar">
             <div class="task-bar-content" style="width: ${taskbarWidth}%"></div>
           </div>
-          <p class="task-bar-text">${numberOfTasksChecked}/${element["subtask"].length} Subtasks</p>
+          <p class="task-bar-text">${numberOfTasksChecked}/${element["subtasks"].length} Subtasks</p>
         </div>
         <div class="task-contacts-container">
           <div class="task-contacts">

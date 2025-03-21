@@ -304,13 +304,12 @@ function showTaskContactPlusHTML(lengthOfAssignedTo) {
  */
 
 async function saveTaskToFirebase(task, id) {
-  console.log(task)
   if (task.assigned.length > 0) {
     setContacts(task);
   }
   fixCategory(task)
   const response = await fetch(`http://127.0.0.1:8000/tasks/${id}/`, {
-    method: "PUT",
+    method: "PATCH",
     headers: {
       "Content-Type": "application/json",
     },
@@ -492,8 +491,8 @@ function renderAllBigPopUp(oldTitle, oldDescription, oldDate, oldPriority, taskJ
  */
 
 function setupSubtaskArray(taskJson) {
-  subtaskArray = taskJson.subtask || [];
-  taskJson.subtask = subtaskArray;
+  subtaskArray = taskJson.subtasks || [];
+  taskJson.subtasks = subtaskArray;
 }
 
 /**
@@ -587,19 +586,23 @@ function closeAllDropDownPopUps() {
 
 function generateTaskHTML(element, contactsHTML, oppositeCategory, rightIcon, jsonElement) {
   let jsonTextElement = encodeURIComponent(jsonElement);
-  if (element["subtask"] && element["subtask"].length > 0) {
-    let numberOfTasksChecked = 0;
-    for (index = 0; index < element["subtask"].length; index++) {
-      if (element["subtask"][index]["is-tasked-checked"] == true) {
-        numberOfTasksChecked += 1;
+  try {
+    if (element["subtasks"].length > 0) {
+      let numberOfTasksChecked = 0;
+      for (index = 0; index < element["subtasks"].length; index++) {
+        if (element["subtasks"][index]["is-tasked-checked"] == true) {
+          numberOfTasksChecked += 1;
+        }
       }
+      let taskbarWidth = Math.round((numberOfTasksChecked / element["subtasks"].length) * 100);
+      return returnTaskHtmlWithSubtask(element, contactsHTML, oppositeCategory, rightIcon, jsonTextElement, taskbarWidth, numberOfTasksChecked);
+    } else if (element["subtasks"].length == 0) {
+      return returnTaskHtmlWithoutSubtask(element, contactsHTML, oppositeCategory, rightIcon, jsonTextElement);
+    } else {
+      return returnTaskHtmlWithoutSubtask(element, contactsHTML, oppositeCategory, rightIcon, jsonTextElement);
     }
-    let taskbarWidth = Math.round((numberOfTasksChecked / element["subtask"].length) * 100);
-    return returnTaskHtmlWithSubtask(element, contactsHTML, oppositeCategory, rightIcon, jsonTextElement, taskbarWidth, numberOfTasksChecked);
-  } else if (element["subtask"] && element["subtask"].length == 0) {
-    return returnTaskHtmlWithoutSubtask(element, contactsHTML, oppositeCategory, rightIcon, jsonTextElement);
-  } else {
-    return returnTaskHtmlWithoutSubtask(element, contactsHTML, oppositeCategory, rightIcon, jsonTextElement);
+  } catch (error) {
+    console.log("Hat keine Länge", element.subtasks.length)
   }
 }
 
