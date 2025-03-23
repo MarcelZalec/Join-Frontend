@@ -406,7 +406,6 @@ async function editContact(userID, i, userColor) {
     "email": document.getElementById("pop-up-email-input").value,
     "number": document.getElementById("pop-up-phone-input").value,
   }
-  console.log("Das ist die User id zum bearbeiten", data)
   try {
     let response = await fetch(BASE_URL2 + `${userID}/`, {
       method: "PUT",
@@ -423,6 +422,8 @@ async function editContact(userID, i, userColor) {
     throw error;
   } finally {
     hideLoadScreen();
+    hidePopUp();
+    initContact();
   }
 }
 

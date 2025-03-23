@@ -308,15 +308,21 @@ async function saveTaskToFirebase(task, id) {
     setContacts(task);
   }
   fixCategory(task)
-  const response = await fetch(`http://127.0.0.1:8000/tasks/${id}/`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(task),
-  });
-  if (!response.ok) {
-    console.error("Fehler beim Speichern der Task in Firebase:", response.statusText);
+  try {
+    const response = await fetch(`http://127.0.0.1:8000/tasks/${id}/`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(task),
+    });
+    if (!response.ok) {
+      console.error("Fehler beim Speichern der Task in Firebase:", response.statusText);
+    }
+  } catch (error) {
+    throw error
+  } finally {
+    updateHTML()
   }
 }
 

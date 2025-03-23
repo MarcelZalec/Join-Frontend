@@ -142,7 +142,7 @@ function returnTaskHtmlWithSubtask(element, contactsHTML, oppositeCategory, righ
   return /*html*/ `
       <div class="task" id=task${taskIndex}
           draggable="true" 
-          ondragstart="startDragging(${element['id']}; rotateFunction(${taskIndex}))" 
+          ondragstart="startDragging(${element['id']}); rotateFunction(${taskIndex})" 
           ondragend="checkIfEmpty(${element['category']}, ${oppositeCategory})" 
           ondragover="allowDrop(event)"
           ondrop="moveTo(${element['category']}"
