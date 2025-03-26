@@ -221,14 +221,13 @@ function hideLoadScreen() {
  * @param {string} userID - The ID of the contact.
  * @param {string} userColor - The color associated with the contact.
  */
-function toggleBigContact(i, userName, userEmail, userNumber, userID, userColor) {
+function toggleBigContact(id, i) {
   let bigContact = document.getElementById("big-contact");
   let contactEl = document.querySelectorAll(".contact")[i];
-
   if (activeContactIndex === i) {
     deselectContact();
   } else {
-    selectContact(userName, userEmail, userNumber, userID, i, userColor, bigContact, contactEl);
+    selectContact(id, i ,bigContact, contactEl);
   }
 }
 
@@ -259,8 +258,9 @@ async function deselectContact() {
  * @param {Element} bigContact - The element showing the big contact view.
  * @param {Element} contactEl - The element representing the contact.
  */
-async function selectContact(userName, userEmail, userNumber, userID, i, userColor, bigContact, contactEl) {
-  await renderBigContact(userName, userEmail, userNumber, userID, i, userColor);
+async function selectContact(userid, i, bigContact, contactEl) {
+  user = allUsers.filter((user) => user.id === userid);
+  await renderBigContact(user[0]);
   if (activeContactIndex !== null) {
     document.querySelectorAll(".contact")[activeContactIndex].classList.remove("contact-aktiv");
   }
@@ -273,6 +273,7 @@ async function selectContact(userName, userEmail, userNumber, userID, i, userCol
   activeContactIndex = i;
 
   contactEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  sessionStorage.setItem("lastActiceContact", activeContactIndex)
 }
 
 /**
@@ -351,13 +352,13 @@ function renderContact(i, j, letter) {
  * @param {number} i - The index of the contact.
  * @param {string} userColor - The background color for the profile badge.
  */
-function renderBigContact(userName, userEmail, userNumber, userID, i, userColor) {
-  document.getElementById("big-profile-badge").innerHTML = firstLetterFirstTwoWords(userName);
-  document.getElementById("big-profile-badge").style.backgroundColor = userColor;
-  document.getElementById("big-name").innerHTML = userName;
-  document.getElementById("big-email").innerHTML = userEmail;
-  document.getElementById("big-number").innerHTML = userNumber;
-  document.getElementById("icon-container").innerHTML = returnBigContactIconContainerHTML(userName, userEmail, userNumber, userID, i, userColor);
+function renderBigContact(user) {
+  document.getElementById("big-profile-badge").innerHTML = firstLetterFirstTwoWords(user.name);
+  document.getElementById("big-profile-badge").style.backgroundColor = user.color;
+  document.getElementById("big-name").innerHTML = user.name;
+  document.getElementById("big-email").innerHTML = user.email;
+  document.getElementById("big-number").innerHTML = user.phone;
+  document.getElementById("icon-container").innerHTML = returnBigContactIconContainerHTML(user.name, user.email, user.phone, user.id, user.color);
 }
 
 /**
@@ -381,8 +382,8 @@ function renderAddContactPopUp() {
  * @param {number} i - Index or additional identifier for the user.
  * @param {string} userColor - The color associated with the user.
  */
-function renderEditContactPopUp(userID, userName, userEmail, userNumber, i, userColor) {
-  document.getElementById("pop-up-inputs-container").innerHTML = returnEditContactPopUpFormHTML(userID, i, userColor);
+function renderEditContactPopUp(userID, userName, userEmail, userNumber, userColor) {
+  document.getElementById("pop-up-inputs-container").innerHTML = returnEditContactPopUpFormHTML(userID);
   document.getElementById("pop-up-headline-container").innerHTML = returnEditContactPopUpHeadlineHTML();
   document.getElementById("pop-up-contact-logo").innerHTML = returnEditContactPopUpLogoHTML(userName);
   document.getElementById("pop-up-contact-logo").style.backgroundColor = userColor;
@@ -398,7 +399,7 @@ function renderEditContactPopUp(userID, userName, userEmail, userNumber, i, user
  * @param {number} i - Index or position in the list (not used in the function).
  * @param {string} userColor - The color associated with the user.
  */
-async function editContact(userID, i, userColor) {
+async function editContact(userID) {
   showLoadScreen();
   userData = allUsers.filter(user => {if (userID == user.id) return user})
   data = {
@@ -423,7 +424,8 @@ async function editContact(userID, i, userColor) {
   } finally {
     hideLoadScreen();
     hidePopUp();
-    initContact();
+    await initContact();
+    getActualInfos();
   }
 }
 
@@ -486,4 +488,10 @@ function afterAddingNewContactShowBigContact(nameInputValue) {
   document.getElementById("show-icon-container-button").classList.add("animation");
   activeContactIndex = index;
   document.querySelectorAll(".contact")[index].scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
+function getActualInfos() {
+  lastActive = sessionStorage.getItem("lastActiceContact");
+  user = allUsers[lastActive]
+  renderBigContact(user)
 }

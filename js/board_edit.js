@@ -305,11 +305,10 @@ function resetSubtasks() {
  * @param {string} id - The ID of the task whose subtasks are being edited.
  */
 
-async function saveSubtaskChanges(id) {
-  let task = tasks[id];
+async function saveSubtaskChanges(task) {
   let taskForEditing = createTaskForEditing(task);
   try {
-    await processTaskEditing(id, taskForEditing);
+    await processTaskEditing(task.id, taskForEditing);
   } catch (error) {
   }
   resetSubtasks();
@@ -740,12 +739,12 @@ function getContacts(task) {
   task.assigned = assigned
 }
 
-function getIndexOfTask(taskId) {
-  let activeTask;
-  tasks.forEach((task) => {
-    if (task.id === taskId) {
-      activeTask = task
-    }
-  });
-  return activeTask
-}
+// function getIndexOfTask(taskId) {
+//   let activeTask;
+//   tasks.forEach((task) => {
+//     if (task.id === taskId) {
+//       activeTask = task
+//     }
+//   });
+//   return activeTask
+// }

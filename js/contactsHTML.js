@@ -29,7 +29,7 @@ function returnContactHTML(j, user) {
   let userColor = user["color"];
 
   return /*html*/ `
-        <div class="contact" onclick="toggleBigContact(${j},'${userName}','${userEmail}','${userNumber}','${userID}','${userColor}')">
+        <div class="contact" onclick="toggleBigContact(${userID}, ${j})">
             <!-- profile badge -->
             <div class="profile-badge" style='background-color: ${userColor}'>
               <p>${firstLetterFirstTwoWords(userName)}</p>
@@ -53,9 +53,9 @@ function returnContactHTML(j, user) {
  * @param {number} i - An index or identifier for the user.
  * @param {string} userColor - The color associated with the user.
  */
-function returnBigContactIconContainerHTML(userName, userEmail, userNumber, userID, i, userColor) {
+function returnBigContactIconContainerHTML(userName, userEmail, userNumber, userID, userColor) {
   return /*html*/ `
-      <div id="edit-contact" onclick='showPopUp(),renderEditContactPopUp("${userID}","${userName}","${userEmail}","${userNumber}","${i}","${userColor}")'>
+      <div id="edit-contact" onclick='showPopUp(),renderEditContactPopUp("${userID}","${userName}","${userEmail}","${userNumber}","${userColor}")'>
         <svg
           width="19"
           height="19"
@@ -366,9 +366,9 @@ function returnEditContactPopUpLogoHTML(userName) {
  * @param {number} i - Index of the contact in the list.
  * @param {string} userColor - The color associated with the user.
  */
-function returnEditContactPopUpFormHTML(userID, i, userColor) {
+function returnEditContactPopUpFormHTML(userID) {
   return /*html*/ `
-        <form onsubmit='editContact("${userID}","${i}","${userColor}"); return false;'>
+        <form onsubmit='editContact("${userID}"); return false;'>
           <div class="pop-up-input-container">
             <input 
             minlength = 2

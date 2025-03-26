@@ -135,7 +135,7 @@ async function depositSubtaskChanges(correctTaskId, subtasks) {
   // await saveChangedSubtaskToFirebase(correctTaskId);
   task = getIndexOfTask(correctTaskId)
   task.subtasks = subtasks
-  await saveTaskToFirebase(task, correctTaskId)
+  // await saveTaskToFirebase(task, correctTaskId)
 }
 
 /**
@@ -145,15 +145,15 @@ async function depositSubtaskChanges(correctTaskId, subtasks) {
  * @returns {Promise<void>} A promise that resolves when the update operation is complete. Logs an error if the request fails.
  */
 
-async function saveChangedSubtaskToFirebase(correctTaskId) {
-  let BASE_URL = `http://127.0.0.1:8000/tasks/${correctTaskId}`;
+async function saveChangedSubtaskToFirebase(task) {
+  let BASE_URL = `http://127.0.0.1:8000/tasks/${task.id}`;
   let taskPath = `/testRealTasks/${correctTaskId}/subtask`;
   let response = await fetch(`${BASE_URL}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(subtaskArray),
+    body: JSON.stringify(task),
   });
   if (!response.ok) {
     console.error("Fehler beim Speichern der Task in Firebase:", response.status, response.statusText);
@@ -192,8 +192,9 @@ function renderTaskContact(taskJson) {
  * @param {string} jsonTextElement - The JSON-encoded string representing the task details.
  * @param {string} id - The unique identifier for the task to be edited.
  */
-function renderEditTask(jsonTextElement, id) {
-  let taskJson = JSON.parse(decodeURIComponent(jsonTextElement));
+function renderEditTask(id) {
+  // let taskJson = JSON.parse(decodeURIComponent(jsonTextElement));
+  let taskJson = getIndexOfTask(id)
   let oldPriority = taskJson.priority;
   let oldTitle = document.getElementById("big-task-pop-up-title-text").innerHTML;
   let oldDescription = document.getElementById("big-task-pop-up-description").innerHTML;

@@ -13,6 +13,7 @@ let checkBoxCheckedJson = {};
 let emptyList = [];
 let renderCurrentTaskId;
 let touchTime;
+let activeTaskID;
 
 /**
  * This asynchronous function performs two main actions:
@@ -396,12 +397,14 @@ function hideAddTaskPopUp() {
  * @param {string} jsonTextElement - A JSON string representing the task content to be rendered in the "Big Task" pop-up.
  */
 
-function showBigTaskPopUp(jsonTextElement) {
+function showBigTaskPopUp(id) {
+  let task = getIndexOfTask(id)
   isBigTaskPopUpOpen = true;
+  activeTaskID = task.id
   document.getElementById("big-task-pop-up-bg").classList.remove("bg-op-0");
   document.getElementById("big-task-pop-up").classList.remove("translate-100");
   document.body.style.overflow = "hidden";
-  renderBigTask(jsonTextElement);
+  renderBigTask(task);
 }
 
 /**
@@ -423,9 +426,8 @@ function hideBigTaskPopUp() {
   document.getElementById("big-task-pop-up").classList.add("translate-100");
   document.body.style.overflow = "unset";
   if (document.getElementById("big-task-pop-up-title-text")) {
-    let title = document.getElementById("big-task-pop-up-title-text").innerHTML;
-    let id = tasks.findIndex((task) => task.title === title);
-    saveSubtaskChanges(id);
+    let task = getIndexOfTask(activeTaskID)
+    saveSubtaskChanges(task);
   }
 }
 
@@ -450,7 +452,8 @@ function hideBigTaskPopUp() {
  */
 
 function renderBigTask(jsonTextElement) {
-  let taskJson = JSON.parse(decodeURIComponent(jsonTextElement));
+  // let taskJson = JSON.parse(decodeURIComponent(jsonTextElement));
+  let taskJson = jsonTextElement
   document.getElementById("big-task-pop-up-priority-container").classList.remove("big-edit-task-pop-up-section-container");
   document.getElementById("big-task-pop-up-due-date-container").classList.remove("big-edit-task-pop-up-section-container");
   document.getElementById("big-task-pop-up-title").innerHTML = /*html*/ `<h1 id='big-task-pop-up-title-text'>${taskJson.title}</h1>`;
@@ -460,7 +463,7 @@ function renderBigTask(jsonTextElement) {
   document.getElementById("big-task-pop-up-category").style.backgroundColor = checkCategoryColor(taskJson.type);
   returnHTMLBigTaskPopUpPriorityContainer(taskJson.priority);
   document.getElementById("big-task-pop-up-priority-icon").innerHTML = checkPriorityIcon(taskJson.priority);
-  document.getElementById("big-task-pop-up-bottom-buttons-container").innerHTML = returnDeleteEditHTML(taskJson.id, jsonTextElement);
+  document.getElementById("big-task-pop-up-bottom-buttons-container").innerHTML = returnDeleteEditHTML(taskJson.id);
   renderCorrectAssignedNamesIntoBigTask(taskJson);
   returnHTMLBigTaskPopUpSubtaskAll();
   renderTaskContact(taskJson);
@@ -623,4 +626,14 @@ function bigEditTaskSubtaskInputCheckEnter(event) {
   if (event.key === "Enter") {
     buildSubtaskArrayForUpload();
   }
+}
+
+function getIndexOfTask(taskId) {
+  let activeTask;
+  tasks.forEach((task) => {
+    if (task.id === taskId) {
+      activeTask = task
+    }
+  });
+  return activeTask
 }
