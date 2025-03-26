@@ -386,6 +386,8 @@ async function loginFunction(event) {
    */
   
   async function guestLogin() {
+    loginEmail.value = "";
+    loginPassword.value = "";
     sessionStorage.setItem("guestLoginStatus", "true");
     response = await sentToken();
     sessionStorage.setItem("AccessToken", `${response['token']}`)
