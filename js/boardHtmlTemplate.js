@@ -142,10 +142,10 @@ function returnTaskHtmlWithSubtask(element, contactsHTML, oppositeCategory, righ
   return /*html*/ `
       <div class="task" id=task${taskIndex}
           draggable="true" 
-          ondragstart="startDragging(${element['id']}); rotateFunction(${taskIndex})" 
-          ondragend="checkIfEmpty(${element['category']}, ${oppositeCategory})" 
+          ondragstart="startDragging(${element['id']}); rotateFunction(${taskIndex})"
+          ondragend="checkIfEmpty('${element['category']}', '${oppositeCategory}')"
           ondragover="allowDrop(event)"
-          ondrop="moveTo(${element['category']}"
+          ondrop="moveTo('${element['category']}')"
           onclick="showBigTaskPopUp('${jsonTextElement}')"
       > <div class="task-category-and-dropdown">
           <div class='task-category' style='background-color: ${checkCategoryColor(element["type"])}'>

@@ -1,7 +1,7 @@
 let tasks = [];
 let categories = [];
 let searchedTasks = [];
-let allCategories = ["to-do-container", "await-feedback-container", "done-container", "in-progress-container"];
+let allCategories = ["to-do-container", "in-progress-container", "await-feedback-container", "done-container"];
 let elementDraggedOver;
 let priorityValue = "";
 let searchedInput = document.getElementById("search-input");
@@ -37,7 +37,6 @@ async function init_task() {
  */
 
 async function loadRelevantData(path = "") {
-  // let response = await fetch(BASE_URL + path + ".json");
   let response = await fetch("http://127.0.0.1:8000/tasks/")
   let responseAsJson = await response.json();
   responseAsJson.forEach(task => {
@@ -100,7 +99,7 @@ async function loadTasksFromDatabase() {
 }
 
 function getTaskContainer(task) {
-  cat = tasks.map(task => task.category)
+  // cat = tasks.map(task => task.category)
   if (task.category == "todo") {
     return task.category = "to-do-container"
   } else if (task.category == "progress") {
@@ -322,7 +321,7 @@ async function saveTaskToFirebase(task, id) {
   } catch (error) {
     throw error
   } finally {
-    updateHTML()
+    window.location.reload()
   }
 }
 

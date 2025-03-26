@@ -98,6 +98,7 @@ async function createTask(side) {
   if (side != "addTask") {
     hideAddTaskPopUp();
     updateHTML();
+    window.location.reload();
   }
   clearTask();
 }
@@ -405,6 +406,7 @@ async function deleteTask(taskId) {
   } finally {
     updateHTML();
     hideBoardLoadScreen();
+    window.location.reload();
   }
 }
 
