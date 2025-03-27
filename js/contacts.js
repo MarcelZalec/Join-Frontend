@@ -475,12 +475,8 @@ async function addNewContact(bgColor = randomColor(), action) {
  */
 function afterAddingNewContactShowBigContact(nameInputValue) {
   let index = allUsers.findIndex((user) => user.name === nameInputValue);
-  let userName = allUsers[index]["name"];
-  let userEmail = allUsers[index]["email"];
-  let userNumber = allUsers[index]["phone"];
-  let userID = allUsers[index]["id"];
-  let userColor = allUsers[index]["color"];
-  renderBigContact(userName, userEmail, userNumber, userID, index, userColor);
+  let user = allUsers.find((user) => user.name === nameInputValue);
+  renderBigContact(user);
   document.querySelectorAll(".contact")[index].classList.add("contact-aktiv");
   document.getElementById("big-contact").classList.remove("hide-big-contact");
   document.getElementById("right-site-container").classList.remove("right-site-container-translate-100");
