@@ -405,7 +405,7 @@ async function loginFunction(event) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": "Token e4ca9f840ef58bf2860a0fdf9501905a4820668f"
+          "Authorization": "Token e551e5fb85c7bf74f3bdd6a5c5db0e6e905a543e"
         }
       });
       return await response.json();
