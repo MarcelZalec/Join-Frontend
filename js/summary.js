@@ -240,9 +240,10 @@ function greetTime() {
  */
 function getDateFormUrgetTask() {
   dateCont = document.getElementById("upcommingDate");
-  findUrgentTasks();
   const earliestdate = returnDatefromAllUrgentTasks();
-  getEarliestDate(earliestdate);
+  if (earliestdate != null) {
+    getEarliestDate(earliestdate);
+  }
 }
 
 /**

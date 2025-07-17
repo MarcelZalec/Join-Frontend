@@ -12,7 +12,7 @@ async function loginFunction(event) {
     let loginPassword = document.getElementById("loginPassword").value;
     let remember = document.getElementById("remember").checked;
     data = {
-      username: loginEmail,
+      email: loginEmail,
       password:loginPassword
     }
     response = await checkLogIn(data)
@@ -86,7 +86,7 @@ async function loginFunction(event) {
     }
     let notification = document.createElement("div");
     notification.classList.add("notification", "error");
-    notification.innerHTML = `<p>Ups! Wrong Password or Username. Try again.</p>`;
+    notification.innerHTML = `<p>Ups! Wrong Password or Email. Try again.</p>`;
     loginInput.appendChild(notification);
   }
   

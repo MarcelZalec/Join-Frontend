@@ -284,16 +284,18 @@ body .translate-100 {
 
 .section-headline {
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: space-between;
 
   width: 100%;
+  margin: 20px 0px;
 }
 
 .section-headline h2 {
   font-size: 20px;
   font-weight: 700;
   color: #42526e;
+  margin: 0;
 }
 
 .plus-icon-container {

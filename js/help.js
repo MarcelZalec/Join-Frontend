@@ -23,7 +23,7 @@ function headerHTML() {
 
     <h1>Kanban Project Management Tool</h1>
     <div class="headerIcons">
-        <div onclick="openDropDownMenu()" class="circle" id="userLetters"></div>
+        <div onclick="openDropDownMenu()" class="circlehead" id="userLetters"></div>
         <div id="dropDown-bg" class="dropDown-bg d-none" onclick="closeDropDownMenu()">
             <div id="dropDown"></div>
         </div>
